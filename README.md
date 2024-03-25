@@ -1,54 +1,27 @@
-En este repositorio centralizaremos toda la información relativa a los **Proyectos de Desarrollo de Aplicaciones Web del I.E.S Alixar**.
-Al continuación encontraremos los **apellidos y nombre** del alumno/a junto al **título de su proyecto**. El enlace nos dará acceso al repositorio del proyecto (no a la página GitHub del usuario).
+# PawShelter
 
-En este repositorio se debe incluir la documentación especificada en [Requerimientos y criterios a seguir en el desarrollo de los proyectos](https://github.com/iesalixar/plantilla_proyecto_iesalixar/wiki/a.---Criterios-comunes-para-todos-los-proyectos), así como las indicaciones que el tutor haya podido ir a realizando a lo largo del desarrollo del mismo.
-
-El desarrollo de toda Aplicación Web requiere seguir un [proceso estructurado](https://github.com/iesalixar/plantilla_proyecto_iesalixar/wiki/w1.--PROCESO-ESTRUCTURADO-PARA-DESARROLLO-DE-APLICACIONES-WEB), este  de contenido de la wiki te puede ayudar.
-
-
----
-
-**Los párrafos anteriores son informativos y no deben aparecer en el reposotirio de los alumnos.**
-
----
-
-# Título del Proyecto
-
-#### Curso Escolar 20XX-20XX
-#### Autor: [Nombre del alumno autor](Enlace a su cuenta de gitHub)
-#### Tutor: [Nombre del profesor tutor](Enlace a su cuenta de gitHub)
-#### Fecha de Inicio: DD-MM-YYYY
-#### Fecha de Finalización: DD-MM-YYYY
+#### Curso Escolar 2023-2024
+#### Autor: [Jorge Vázquez Espinosa](https://github.com/Jvazesp2002)
+#### Tutor: [Antonio Gabriel González Casado](https://github.com/antonio-gabriel-gonzalez-casado)
+#### Fecha de Inicio: 25-03-2024
+#### Fecha de Finalización: TBD
 
 ## Breve descripción del proyecto
 
-Si ya tienes una idea para tu aplicación, explícala brevemente. Si no es así, lo que realmente necesitas es **buscar un problema o necesidad a la que darle solución**, y estos **están por todas partes**. Así que trata de buscar problemas o necesidades en tu vida diaria y realiza una lista. Una vez que tengas una lista exhaustiva, ya puedes empezar a pensar en **cómo puedes resolverlos**.
-
-En este apartado el alumno debe hacer una breve descripción del proyecto que vaya a realizar. Esta descripción no será ua descripción detallada, será una presentación general con no más de 10 líneas.
+El proyecto consiste en unir las funciones de una protectora de animales y de una guardería para mascotas, pudiendo tanto añadir mascotas a la lista de adopcion como brindar a los dueños de mascotas la posibilidad de dejarlas en la guarderia durante un tiempo en el que ellos no puedan cuidarlas.
 
 ## Definir el objetivo de la aplicación
-**Tener una gran idea** o encontrar un punto del mercado al que no se esté dando un producto o servicio es el punto de partida en cada nuevo proyecto. Antes de comenzar debes **definir claramente el propósito y la misión de la aplicación web**:
+La aplicación permitirá a los usuarios registrarse y acceder a un entorno donde podrán buscar mascotas disponibles para adopción. Cada perfil de mascota incluirá detalles, como especie, edad, género, para que los usuarios puedan encontrar la mascota que mejor se adapte a sus preferencias. Además, la plataforma incorporará funcionalidades de búsqueda avanzada para permitir a los usuarios filtrar las mascotas disponibles según criterios específicos, como especie y edad.
 
-- **¿Qué va a hacer la aplicación?**
-- **¿Cuál es su atractivo principal?** 
-- **¿Qué problema concreto va a resolver?** 
-- **¿Qué necesidad va a cubrir?**
+Tambien, como se mencionó en la descripción la applicación permitirá a dueños de mascotas rellenar un breve formulario con sus datos y los de su mascota, para que durante un breve tiempo, esta reciba cuidados en la guarderia mientras que el dueño no puede cuidarla. PawShelter, ademas de aunar las funciones de un refugio de animales y de una guardería, permitirá a las personas con menos capacidad económica dejar derante un periodo de dos semanas como máximo a su mascota a coste cero, ya que, mediante un voluntariado al que las personas podran optar a hacer, podrán desempeñar la labor de cuidar a los animales de la guardería.
 
 ## Estructura del Proyecto
-
-En este apartado el alumno explicará el contenido del repositorio y de todas las carpetas relevantes del mismo. Para facilitar la gestión de la entrega, todo el código y documentación debe estar en este repositorio.
-
-Por lo anterior, un proyecto que contenga un Frontend en una tecnología o framework (por ejemplo Angular) y una API REST en otra tecnología o framework (Springboot, Express) deberá tener la siguiente estructura de directorios en el repositorio de entrega:
 
 - src-api
 - src-frontend
 - docs
 - README.md
 
-En el caso anterior, si se quiere desplegar de forma automatizada a partir del control de versiones, lo habitual es que estén los dos proyectos en repositorios separados. Por lo que se deberá configurar el despliegue automático para indicarle la raíz del código fuente de cada proyecto (si es posible) o hacer dos folks del repositorio principal uno para la API y otro para el frontend y adaptar los directorios para poder realizar el despliegue automático.
+En src-api, se encontrará la parte backend de la applicación con la logica de negocio, que generará automaticamente con el inicio de la aplicación un listado con 50 animales que se encontrarán algunos en el listado de adopción y otros en el listado de la guardería y algunos dueños y voluntarios que serán asignados a las mascotas en la guardería.
 
-En un proyecto monolítico (tecnología servidor: Springboot, Django, Express, PHP,... con un sistema de templates propio para el frontend: Thymeleaf, jinja, ejs,...) deberá tener la siguiente estructura en el repositorio de entrega:
-
-- src
-- docs
-- README.md
+En src-frontend, se encontrará el apartado visual de la aplicacion, donde mediante Angular, HTML, SCSS y Bootstrap, se generará una página de uso simple que consumira el backend a la hora de la autenticacion de usuarios, buscando en la base de datos si es un usuario registrado , voluntario o el mismo dueño. Tendrá distintos apartados como el listado de mascotas disponibles para adopción con algunos detalles de la misma. Un listado de las mascotas que están en la guarderia donde los voluntarios podrán acceder para darle cuidados a las mismas y se verán los detalles de estas como el nombre del dueño, el periodo durante el cual estará en la guarderia y el voluntario asignado, que este ultimo, será asignado a traves del rol del administrador. Por ultimo, tendrá el panel de control administrativo, en el cual el administrador podrá gestionar los usuarios dados de alta, los voluntarios y podrá acceder a los listados para hacer cambios en ellos, como quitar del listado la mascota porque ya haya sido adoptada o su periodo en la guarderia haya acabado y añadir voluntarios a las mascotas en la guardería.
