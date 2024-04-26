@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .left img {
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+  }
+  
+  .center {
+    flex-grow: 1; /* Ocupa todo el espacio disponible en el centro */
+    text-align: center;
+  }
+  
+  .right {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .right i {
+    margin-left: 10px; /* Espacio entre los iconos */
+  }
+  
