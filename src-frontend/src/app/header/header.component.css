@@ -2,17 +2,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff; /* Azul */
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
   }
   
   .left img {
-    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    width: 50px;
   }
   
   .center {
-    flex-grow: 1; /* Ocupa todo el espacio disponible en el centro */
+    flex-grow: 1;
     text-align: center;
   }
   
@@ -22,6 +22,6 @@
   }
   
   .right i {
-    margin-left: 10px; /* Espacio entre los iconos */
+    margin-left: 10px;
   }
   

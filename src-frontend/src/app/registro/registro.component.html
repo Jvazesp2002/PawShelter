@@ -1,18 +1,18 @@
 <div class="register">
     <form class="custom-form" method="post">
-      <h1>Register</h1>
+      <h1>Formulario de Registro</h1>
       <input
         type="text"
         [(ngModel)]="nombre"
         name="firstName"
-        placeholder="First Name"
+        placeholder="Nombre"
         required="required"
       />
       <input
         type="text"
         [(ngModel)]="apellidos"
         name="lastName"
-        placeholder="Last Name"
+        placeholder="Apellidos"
         required="required"
       />
       <input
@@ -26,10 +26,10 @@
         type="password"
         [(ngModel)]="password"
         name="password"
-        placeholder="Password"
+        placeholder="Contraseña"
         required="required"
       />
-      <button type="submit" (click)="register()">Register</button>
+      <button type="submit" (click)="register()">Registrarse</button>
     </form>
   </div>
   
