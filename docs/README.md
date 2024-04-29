@@ -7,3 +7,4 @@
   - Tiempo: Es un campo de tipo Date y estará limitado a un máximo de 2 semanas desde el momento en el que se mira.
 - Refugio
   - Vacunado: Es un campo de tipo boolean e indica si la mascota en cuestion esta vacunada o no.
+## [Link al diseño de Figma](https://www.figma.com/file/kXLwpSTwmv2PtHV1aIjLuI/PawShelter?type=design&mode=design&t=TUeo7aHHGhw5FlJc-1)
