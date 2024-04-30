@@ -1,57 +1,135 @@
 package com.daw2.proyecto.controller;
 
+import org.springframework.http.HttpHeaders;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daw2.proyecto.dtos.request.LoginRequest;
-import com.daw2.proyecto.dtos.request.RegisterRequest;
-import com.daw2.proyecto.dtos.response.JwtAuthenticationResponse;
-import com.daw2.proyecto.services.AuthenticationService;
+import com.daw2.proyecto.model.ERole;
+import com.daw2.proyecto.model.Role;
+import com.daw2.proyecto.model.User;
+import com.daw2.proyecto.payload.request.LoginRequest;
+import com.daw2.proyecto.payload.request.SignupRequest;
+import com.daw2.proyecto.payload.response.JwtResponse;
+import com.daw2.proyecto.payload.response.MessageResponse;
+import com.daw2.proyecto.repository.RoleRepository;
+import com.daw2.proyecto.repository.UserRepository;
+import com.daw2.proyecto.security.jwt.JwtUtils;
+import com.daw2.proyecto.security.service.UserDetailsImpl;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 
-/**
- * Controlador REST que gestiona las operaciones de autenticación y registro de usuarios.
- * Proporciona endpoints para registrar nuevos usuarios y para iniciar sesión.
- */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 public class AuthController {
+	  @Autowired
+	  AuthenticationManager authenticationManager;
 
-    /**
-     * Inyección del servicio de autenticación.
-     */
-    @Autowired
-    private AuthenticationService authenticationService;
+	  @Autowired
+	  UserRepository userRepository;
 
-    /**
-     * Registra un nuevo usuario en el sistema.
-     *
-     * @param request Datos de registro del nuevo usuario.
-     * @return ResponseEntity que contiene la respuesta de autenticación con el token JWT.
-     */
-    @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody RegisterRequest request) {
-        JwtAuthenticationResponse response = authenticationService.signup(request);
-        return ResponseEntity.ok(response);
-    }
+	  @Autowired
+	  RoleRepository roleRepository;
 
-    /**
-     * Inicia sesión para un usuario existente en el sistema.
-     *
-     * @param request Datos de inicio de sesión del usuario.
-     * @return ResponseEntity que contiene la respuesta de autenticación con el token JWT.
-     */
-    @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody LoginRequest request) {
-        JwtAuthenticationResponse response = authenticationService.signin(request);
-        return ResponseEntity.ok(response);
-    }
+	  @Autowired
+	  PasswordEncoder encoder;
+
+	  @Autowired
+	  JwtUtils jwtUtils;
+
+	  @PostMapping("/signin")
+	  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+	    Authentication authentication = authenticationManager
+	        .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
+	    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+	    ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+
+	    List<String> roles = userDetails.getAuthorities().stream()
+	        .map(item -> item.getAuthority())
+	        .collect(Collectors.toList());
+
+	    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+	        .body(new JwtResponse(userDetails.getId(),
+	                                   userDetails.getUsername(),
+	                                   userDetails.getEmail(),
+	                                   roles));
+	  }
+
+	  @PostMapping("/signup")
+	  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+	      return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+	    }
+
+	    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+	      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+	    }
+
+	    User user = new User(signUpRequest.getUsername(),
+	                         signUpRequest.getEmail(),
+	                         encoder.encode(signUpRequest.getPassword()));
+
+	    Set<String> strRoles = signUpRequest.getRole();
+	    Set<Role> roles = new HashSet<>();
+
+	    if (strRoles == null) {
+	      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+	          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+	      roles.add(userRole);
+	    } else {
+	      strRoles.forEach(role -> {
+	        switch (role) {
+	        case "admin":
+	          Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+	              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+	          roles.add(adminRole);
+
+	          break;
+	        case "mod":
+	          Role volRole = roleRepository.findByName(ERole.ROLE_VOLUNTEER)
+	              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+	          roles.add(volRole);
+
+	          break;
+	        default:
+	          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+	              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+	          roles.add(userRole);
+	        }
+	      });
+	    }
+
+	    user.setRoles(roles);
+	    userRepository.save(user);
+
+	    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	  }
+
+	  @PostMapping("/signout")
+	  public ResponseEntity<?> logoutUser() {
+	    ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+	    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+	        .body(new MessageResponse("You've been signed out!"));
+	  }
 }
