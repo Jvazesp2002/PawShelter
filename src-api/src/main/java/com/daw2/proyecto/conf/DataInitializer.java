@@ -14,10 +14,10 @@ import com.daw2.proyecto.service.UserService;
 public class DataInitializer implements CommandLineRunner {
 
 	@Autowired
-	private UserService UserService;
+	private UserService userService;
 
 	@Autowired
-	private UserRepository UserRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -25,34 +25,30 @@ public class DataInitializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 
-		User User1 = new User();
-		User User2 = new User();
+		User user1 = new User();
+		User user2 = new User();
 		User admin = new User();
 
-		if (UserService.findUserById(1L) == null) {
+			user1.setName("Userejemplo");
+			user1.setSurname("1234");
+			user1.setEmail("userejemplo@gmail.com");
+			user1.setPass(passwordEncoder.encode("1234"));
+			user1.getRoles().add(Role.ROLE_USER);
+			userRepository.save(user1);
 
-			User1.setName("Userejemplo");
-			User1.setSurname("1234");
-			User1.setEmail("Userejemplo@gmail.com");
-			User1.setPass(passwordEncoder.encode("1234"));
-			User1.getRoles().add(Role.ROLE_USER);
-			UserRepository.save(User1);
-
-			User1.setName("voluntarioejemplo");
-			User1.setSurname("1234");
-			User1.setEmail("voluntario@gmail.com");
-			User1.setPass(passwordEncoder.encode("1234"));
-			User1.getRoles().add(Role.ROLE_VOLUNTEER);
-			UserRepository.save(User2);
+			user2.setName("voluntarioejemplo");
+			user2.setSurname("1234");
+			user2.setEmail("voluntario@gmail.com");
+			user2.setPass(passwordEncoder.encode("1234"));
+			user2.getRoles().add(Role.ROLE_VOLUNTEER);
+			userRepository.save(user2);
 
 			admin.setName("admin");
 			admin.setSurname("admin");
 			admin.setEmail("admin@gmail.com");
 			admin.setPass(passwordEncoder.encode("admin"));
 			admin.getRoles().add(Role.ROLE_ADMIN);
-			UserRepository.save(admin);
+			userRepository.save(admin);
 
-		}
 	}
-
 }

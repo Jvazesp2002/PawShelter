@@ -3,7 +3,7 @@ package com.daw2.proyecto.payload.request;
 
 public class LoginRequest {
     private String email;
-    private String contrasena;
+    private String password;
 
     /**
      * Constructor por defecto.
@@ -17,9 +17,9 @@ public class LoginRequest {
      * @param email      El correo electrónico proporcionado en la solicitud.
      * @param contrasena La contraseña proporcionada en la solicitud.
      */
-    public LoginRequest(String email, String contrasena) {
+    public LoginRequest(String email, String password) {
         this.email = email;
-        this.contrasena = contrasena;
+        this.password = password;
     }
 
     /**
@@ -45,8 +45,8 @@ public class LoginRequest {
      *
      * @return La contraseña de la solicitud.
      */
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -54,7 +54,7 @@ public class LoginRequest {
      *
      * @param contrasena La contraseña de la solicitud.
      */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

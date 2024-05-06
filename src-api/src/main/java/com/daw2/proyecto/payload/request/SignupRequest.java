@@ -1,22 +1,22 @@
 package com.daw2.proyecto.payload.request;
 
 public class SignupRequest {
-	private String nombre;
+	private String name;
 	private String email;
-	private String contrasena;
+	private String password;
 
-	public SignupRequest(String nombre, String email, String contrasena) {
-		this.nombre = nombre;
+	public SignupRequest(String name, String email, String password) {
+		this.name = name;
 		this.email = email;
-		this.contrasena = contrasena;
+		this.password = password;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -27,11 +27,11 @@ public class SignupRequest {
 		this.email = email;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

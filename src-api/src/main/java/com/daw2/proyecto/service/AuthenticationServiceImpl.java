@@ -45,9 +45,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		}
 
 		User user = new User();
-		user.setName(request.getNombre());
+		user.setName(request.getName());
 		user.setEmail(request.getEmail());
-		user.setPass(passwordEncoder.encode(request.getContrasena()));
+		user.setPass(passwordEncoder.encode(request.getPassword()));
 		user.getRoles().add(Role.ROLE_USER);
 		userRepository.save(user);
 		String jwt = jwtService.generateToken(user);
@@ -60,7 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Override
 	public JwtResponse signin(LoginRequest request) {
 		Authentication authentication = authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getContrasena()));
+				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 

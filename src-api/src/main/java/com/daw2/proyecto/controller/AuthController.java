@@ -15,7 +15,7 @@ import com.daw2.proyecto.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor

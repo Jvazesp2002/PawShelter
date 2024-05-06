@@ -36,7 +36,7 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "El name no puede estar en blanco")
+	@NotBlank(message = "El nombre no puede estar en blanco")
 	private String name;
 
 	private String surname;
@@ -50,8 +50,8 @@ public class User implements UserDetails {
 
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
 	@Enumerated(EnumType.STRING)
-	@CollectionTable(name = "usuario_rol")
-	@Column(name = "Rol")
+	@CollectionTable(name = "user_role")
+	@Column(name = "Role")
 	private Set<Role> rol = new HashSet<>();
 
 	@Transactional
