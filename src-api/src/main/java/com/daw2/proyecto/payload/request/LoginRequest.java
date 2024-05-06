@@ -1,27 +1,60 @@
 package com.daw2.proyecto.payload.request;
 
-import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequest {
-	@NotBlank
-	private String email;
+    private String email;
+    private String contrasena;
 
-	@NotBlank
-	private String password;
+    /**
+     * Constructor por defecto.
+     */
+    public LoginRequest() {
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * Constructor que toma el correo electrónico y la contraseña de la solicitud.
+     *
+     * @param email      El correo electrónico proporcionado en la solicitud.
+     * @param contrasena La contraseña proporcionada en la solicitud.
+     */
+    public LoginRequest(String email, String contrasena) {
+        this.email = email;
+        this.contrasena = contrasena;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * Obtiene el correo electrónico de la solicitud.
+     *
+     * @return El correo electrónico de la solicitud.
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * Establece el correo electrónico de la solicitud.
+     *
+     * @param email El correo electrónico de la solicitud.
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * Obtiene la contraseña de la solicitud.
+     *
+     * @return La contraseña de la solicitud.
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    /**
+     * Establece la contraseña de la solicitud.
+     *
+     * @param contrasena La contraseña de la solicitud.
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }
