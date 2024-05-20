@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +12,5 @@ import { FooterComponent } from './footer/footer.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'src-frontend';
+  title = 'frontend';
 }

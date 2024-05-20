@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://localhost:8080/api/auth'; // Cambia esto si tu API está en otro puerto o dominio
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/signin`, credentials);
   }
 
-  register(nombre: string, apellidos: string, email: string, contrasena: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, { nombre, apellidos, email, contrasena });
+  register(credentials: { nombre: string, email: string, contrasena: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/signup`, credentials);
   }
 }
+
