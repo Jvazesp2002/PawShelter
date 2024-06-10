@@ -5,11 +5,12 @@ import { AuthService } from '../services/auth.service';
 import { JwtService } from '../services/jwt-service.service';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../layout/header/header.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

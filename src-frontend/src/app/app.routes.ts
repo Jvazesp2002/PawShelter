@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { VolunteerDashboardComponent } from './volunteer-dashboard/volunteer-dashboard.component';
 import { DaycareFormComponent } from './daycare-form/daycare-form.component';
 import { AdoptionListComponent } from './adoption-list/adoption-list.component';
+import { AdminDaycareComponent } from './admin-daycare/admin-daycare.component';
 
 
 export const routes: Routes = [
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'volunteerDash', component: VolunteerDashboardComponent, canMatch: [userGuard] },
   { path: 'guarderia', component: DaycareFormComponent, canMatch: [userGuard] },
   { path: 'adopcion', component: AdoptionListComponent, canMatch: [userGuard] },
+  { path: 'guarderiaAdmin', component: AdminDaycareComponent, canMatch: [roleoGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

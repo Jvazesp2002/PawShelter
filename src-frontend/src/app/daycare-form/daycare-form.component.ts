@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MascotaGuarderiaServiceService } from '../services/mascota-guarderia-service.service';
+import { HeaderRegistradoComponent } from '../layout/header-registrado/header-registrado.component';
 
 @Component({
   selector: 'app-daycare-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, HeaderRegistradoComponent],
   templateUrl: './daycare-form.component.html',
   styleUrl: './daycare-form.component.css'
 })
