@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.daw2.proyectoFinal.model.Mascota;
+import com.daw2.proyectoFinal.model.MascotaAdop;
 import com.daw2.proyectoFinal.repository.MascotaRepository;
 import com.daw2.proyectoFinal.services.MascotaService;
 
@@ -15,18 +15,18 @@ public class MascotaServiceImpl implements MascotaService{
 	    private MascotaRepository mascotaRepository;
 
 	    @Override
-	    public Mascota crearMascota(Mascota mascota) {
+	    public MascotaAdop crearMascota(MascotaAdop mascota) {
 	        return mascotaRepository.save(mascota);
 	    }
 
 	    @Override
-	    public Mascota obtenerMascotaPorId(Long id) {
-	        Optional<Mascota> optionalMascota = mascotaRepository.findById(id);
+	    public MascotaAdop obtenerMascotaPorId(Long id) {
+	        Optional<MascotaAdop> optionalMascota = mascotaRepository.findById(id);
 	        return optionalMascota.orElse(null);
 	    }
 
 	    @Override
-	    public List<Mascota> obtenerTodasLasMascotas() {
+	    public List<MascotaAdop> obtenerTodasLasMascotas() {
 	        return mascotaRepository.findAll();
 	    }
 
@@ -40,7 +40,7 @@ public class MascotaServiceImpl implements MascotaService{
 	    }
 	    
 	    @Override
-	    public Mascota actualizarMascota(Mascota mascota) {
+	    public MascotaAdop actualizarMascota(MascotaAdop mascota) {
 	        return mascotaRepository.save(mascota);
 	    }
 

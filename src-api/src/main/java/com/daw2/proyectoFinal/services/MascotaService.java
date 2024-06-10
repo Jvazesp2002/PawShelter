@@ -2,16 +2,16 @@ package com.daw2.proyectoFinal.services;
 
 import java.util.List;
 
-import com.daw2.proyectoFinal.model.Mascota;
+import com.daw2.proyectoFinal.model.MascotaAdop;
 
 public interface MascotaService {
-	Mascota crearMascota(Mascota mascota);
+	MascotaAdop crearMascota(MascotaAdop mascota);
 
-	Mascota obtenerMascotaPorId(Long id);
+	MascotaAdop obtenerMascotaPorId(Long id);
 
-	List<Mascota> obtenerTodasLasMascotas();
+	List<MascotaAdop> obtenerTodasLasMascotas();
 
-	Mascota actualizarMascota(Mascota mascota);
+	MascotaAdop actualizarMascota(MascotaAdop mascota);
 
 	boolean eliminarMascota(Long id);
 }
