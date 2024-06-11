@@ -1,47 +1,28 @@
 package com.daw2.proyectoFinal.servicesImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.daw2.proyectoFinal.model.MascotaRescue;
-import com.daw2.proyectoFinal.repository.MascotaRescRepository;
-import com.daw2.proyectoFinal.services.MascotaRescService;
+import com.daw2.proyectoFinal.model.MascotaResc;
+import com.daw2.proyectoFinal.repository.MascotaRescRespository;
 
-public class MascotaRescServiceImpl implements MascotaRescService {
+@Service
+public class MascotaRescServiceImpl {
 
 	@Autowired
-	private MascotaRescRepository mascotaRepository;
+	private MascotaRescRespository mascotaRescRepository;
 
-	@Override
-	public MascotaRescue crearMascota(MascotaRescue mascota) {
-		return mascotaRepository.save(mascota);
+	public List<MascotaResc> findAll() {
+		return mascotaRescRepository.findAll();
 	}
 
-	@Override
-	public MascotaRescue obtenerMascotaPorId(Long id) {
-		Optional<MascotaRescue> optionalMascota = mascotaRepository.findById(id);
-		return optionalMascota.orElse(null);
+	public MascotaResc save(MascotaResc mascotaResc) {
+		return mascotaRescRepository.save(mascotaResc);
 	}
 
-	@Override
-	public List<MascotaRescue> obtenerTodasLasMascotas() {
-		return mascotaRepository.findAll();
+	public void deleteById(Long id) {
+		mascotaRescRepository.deleteById(id);
 	}
-
-	@Override
-	public boolean eliminarMascota(Long id) {
-		if (mascotaRepository.existsById(id)) {
-			mascotaRepository.deleteById(id);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public MascotaRescue actualizarMascota(MascotaRescue mascota) {
-		return mascotaRepository.save(mascota);
-	}
-
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MascotaGuarderiaServiceService {
 
-  private apiUrl = 'http://localhost:8080/api'; // Reemplaza con la URL de tu API de pets
+  private apiUrl = 'http://localhost:8080/api/pets'; // Reemplaza con la URL de tu API de pets
 
   constructor(private http: HttpClient) { }
 

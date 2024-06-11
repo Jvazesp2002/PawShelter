@@ -4,18 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "mascotas")
-public class MascotaGuar {
+public class MascotaResc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
 	private int edad;
 	private String raza;
-	private int dias;
+	private String vacunado;
 
 	public Long getId() {
 		return id;
@@ -25,36 +22,28 @@ public class MascotaGuar {
 		this.id = id;
 	}
 
-	public String getName() {
-		return nombre;
-	}
-
-	public void setName(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public int getAge() {
+	public int getEdad() {
 		return edad;
 	}
 
-	public void setAge(int edad) {
+	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 
-	public String getBreed() {
+	public String getRaza() {
 		return raza;
 	}
 
-	public void setBreed(String raza) {
+	public void setRaza(String raza) {
 		this.raza = raza;
 	}
 
-	public int getStayDays() {
-		return dias;
+	public String getVacunado() {
+		return vacunado;
 	}
 
-	public void setStayDays(int dias) {
-		this.dias = dias;
+	public void setVacunado(String vacunado) {
+		this.vacunado = vacunado;
 	}
 
 }
