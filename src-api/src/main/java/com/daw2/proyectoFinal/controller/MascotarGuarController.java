@@ -16,7 +16,7 @@ import com.daw2.proyectoFinal.model.MascotaGuar;
 import com.daw2.proyectoFinal.servicesImpl.MascotaGuarServiceImpl;
 
 @RestController
-@RequestMapping("/api/dog-vaccinations")
+@RequestMapping("/api/guarderia")
 public class MascotarGuarController {
 	@Autowired
 	private MascotaGuarServiceImpl service;

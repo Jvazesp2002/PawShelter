@@ -16,7 +16,7 @@ import com.daw2.proyectoFinal.model.MascotaResc;
 import com.daw2.proyectoFinal.servicesImpl.MascotaRescServiceImpl;
 
 @RestController
-@RequestMapping("/api/mascotaRescs")
+@RequestMapping("/api/refugio")
 public class MascotaRescController {
 	@Autowired
 	private MascotaRescServiceImpl service;
