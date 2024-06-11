@@ -11,19 +11,19 @@ export class AdopcionService {
 
   constructor(private http: HttpClient) {}
 
-  getDogVaccinations(): Observable<MascotaAdop[]> {
+  getListaAdopcion(): Observable<MascotaAdop[]> {
     return this.http.get<MascotaAdop[]>(this.apiUrl);
   }
 
-  createDogVaccination(mascotaAdop: MascotaAdop): Observable<MascotaAdop> {
+  createMascotaAdopcion(mascotaAdop: MascotaAdop): Observable<MascotaAdop> {
     return this.http.post<MascotaAdop>(this.apiUrl, mascotaAdop);
   }
 
-  updateDogVaccination(id: number, mascotaAdop: MascotaAdop): Observable<MascotaAdop> {
+  updateMascotaAdopcion(id: number, mascotaAdop: MascotaAdop): Observable<MascotaAdop> {
     return this.http.put<MascotaAdop>(`${this.apiUrl}/${id}`, mascotaAdop);
   }
 
-  deleteDogVaccination(id: number): Observable<void> {
+  deleteMascotaAdopcion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

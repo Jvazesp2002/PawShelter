@@ -10,19 +10,19 @@ export class GuarderiaService {
 
   constructor(private http: HttpClient) {}
 
-  getDogVaccinations(): Observable<MascotaGuar[]> {
+  getMascotasGuarderia(): Observable<MascotaGuar[]> {
     return this.http.get<MascotaGuar[]>(this.apiUrl);
   }
 
-  createDogVaccination(mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
+  createMascotaGuarderia(mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
     return this.http.post<MascotaGuar>(this.apiUrl, mascotaGuar);
   }
 
-  updateDogVaccination(id: number, mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
+  updateMascotaGuarderia(id: number, mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
     return this.http.put<MascotaGuar>(`${this.apiUrl}/${id}`, mascotaGuar);
   }
 
-  deleteDogVaccination(id: number): Observable<void> {
+  deleteMascotaGuarderia(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

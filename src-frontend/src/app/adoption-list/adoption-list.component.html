@@ -1,2 +1,7 @@
 <app-header-registrado></app-header-registrado>
-<p>adoption-list works!</p>
+<div>
+    <h2>Lista de Perros en Adopción</h2>
+    <ul>
+      <li *ngFor="let dog of mascotaAdop">{{ dog.nombre }} - {{ dog.edad }} años - {{ dog.raza }}</li>
+    </ul>
+  </div>

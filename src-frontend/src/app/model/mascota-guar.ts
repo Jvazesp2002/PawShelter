@@ -1,7 +1,6 @@
 export interface MascotaGuar {
-    id: number;
     nombre:string;
-    edad: number;
+    edad: string;
     raza: string;
     dias: string;
 }
