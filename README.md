@@ -4,7 +4,7 @@
 #### Autor: [Jorge Vázquez Espinosa](https://github.com/Jvazesp2002)
 #### Tutor: [Antonio Gabriel González Casado](https://github.com/antonio-gabriel-gonzalez-casado)
 #### Fecha de Inicio: 25-03-2024
-#### Fecha de Finalización: TBD
+#### Fecha de Finalización: 12/06/2024
 
 ## Breve descripción del proyecto
 
