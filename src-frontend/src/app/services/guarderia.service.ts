@@ -8,23 +8,37 @@ import { MascotaGuar } from '../model/mascota-guar';
 export class GuarderiaService {
   private apiUrl = 'http://localhost:8080/api/guarderia';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMascotasGuarderia(token: string): Observable<MascotaGuar[]> {
-        // Agregar el token de autenticación al encabezado de la solicitud
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    // Agregar el token de autenticación al encabezado de la solicitud
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-        // Configurar las cabeceras CORS para permitir solicitudes desde el origen de tu aplicación Angular
-        headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
-        return this.http.get<any[]>(`${this.apiUrl}`, { headers });
+    // Configurar las cabeceras CORS para permitir solicitudes desde el origen de tu aplicación Angular
+    headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    return this.http.get<any[]>(`${this.apiUrl}`, { headers });
   }
 
-  createMascotaGuarderia(mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
-    return this.http.post<MascotaGuar>(this.apiUrl, mascotaGuar);
+  createMascotaGuarderia(mascotaGuar: MascotaGuar, token: string): Observable<any[]> {
+    // Agregar el token de autenticación al encabezado de la solicitud
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    // Configurar las cabeceras CORS para permitir solicitudes desde el origen de tu aplicación Angular
+    headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    // Hacer la solicitud HTTP con el encabezado de autenticación y las cabeceras CORS
+    return this.http.post<any[]>(`${this.apiUrl}`, mascotaGuar, { headers });
   }
 
-  updateMascotaGuarderia(id: number, mascotaGuar: MascotaGuar): Observable<MascotaGuar> {
-    return this.http.put<MascotaGuar>(`${this.apiUrl}/${id}`, mascotaGuar);
+  updateMascotaGuarderia(id: number, mascotaGuar: MascotaGuar, token:string): Observable<any[]> {
+    // Agregar el token de autenticación al encabezado de la solicitud
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    // Configurar las cabeceras CORS para permitir solicitudes desde el origen de tu aplicación Angular
+    headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    // Hacer la solicitud HTTP con el encabezado de autenticación y las cabeceras CORS
+    return this.http.put<any[]>(`${this.apiUrl}/${id}`, mascotaGuar, { headers });
   }
 
   deleteMascotaGuarderia(id: number): Observable<void> {

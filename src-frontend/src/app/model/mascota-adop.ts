@@ -1,5 +1,6 @@
 export interface MascotaAdop {
-    age: number;
-    breed: string;
+    id:number;
+    edad: number;
+    raza: string;
     vacunado: string;
 }

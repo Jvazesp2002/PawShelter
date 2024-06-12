@@ -32,25 +32,26 @@ export class DaycareFormComponent {
   crearMascota(): void {
     console.log(this.mascota);
     const token = localStorage.getItem('token');
-    const newMascota = {
-      name: this.mascota.name,
-      age: this.mascota.age,
-      breed: this.mascota.breed,
-      stayDays: this.mascota.stayDays
-    }
-    this.mascotaService.createMascotaGuarderia(newMascota).subscribe({
-      next: () => {
-        this.openModalCerrar();
-      },
-      error: (error: any) => {
-        console.error('Error al crear la mascota', error);
-      },
-      complete: () => {
-        console.log('Petición para crear la mascota completada');
+    if (token) {
+      const newTarea = {
+        name: this.mascota.name,
+        age: this.mascota.age,
+        breed: this.mascota.breed,
+        stayDays: this.mascota.stayDays,
       }
-    });
-    {
-      console.error('Error desconocido');
+      this.mascotaService.createMascotaGuarderia(newTarea, token).subscribe({
+        next: () => {
+          this.openModalCerrar();
+        },
+        error: (error: any) => {
+          console.error('Error al crear la mascota', error);
+        },
+        complete: () => {
+          console.log('Petición para crear la mascota completada');
+        }
+      });
+    } else {
+      console.error('Algo ocurrió.');
     }
   }
 
