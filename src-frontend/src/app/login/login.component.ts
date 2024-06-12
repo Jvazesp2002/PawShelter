@@ -33,21 +33,18 @@ export class LoginComponent {
 
     this.authService.login(credentials).subscribe({
       next: (resp) => {
-        // Pilla el token
         console.log(resp);
         console.log(resp.user.token);
         this.token = resp.user.token;
 
-        // Lo guardo en local
         this.jwtService.saveToken(resp.user.token);
+        window.localStorage["varemo"] = this.password;
         this.redirectUserByRole();
       },
       error: (error) => {
         console.error('Error de autenticación:', error);
       },
       complete: () => {
-        /*const tokenSuelto = jwtDecode(this.token);
-        console.log(tokenSuelto);*/
         console.log('He terminado la petición')
       }
     });
@@ -66,12 +63,10 @@ export class LoginComponent {
 
     this.authService.register(credentials).subscribe({
       next: (resp) => {
-        // Pilla el token
         console.log(resp);
         console.log(resp.user.token);
         this.token = resp.user.token;
 
-        // Lo guardo en local
         this.jwtService.saveToken(resp.user.token);
         this.redirectUserByRole();
       },
@@ -79,8 +74,6 @@ export class LoginComponent {
         console.error('Error de autenticación:', error);
       },
       complete: () => {
-        /*const tokenSuelto = jwtDecode(this.token);
-        console.log(tokenSuelto);*/
         console.log('He terminado la petición')
       }
     });
@@ -100,8 +93,10 @@ export class LoginComponent {
           // Redirigir al usuario a la página correspondiente según su rol
           if (userRole === 'ADMINISTRADOR') {
             window.location.href = '/adminDash';
+          } else {
+            window.location.href = '/userDash';
           }
-          if (userRole === "VOLUNTARIO") {
+          if (userRole === 'VOLUNTARIO') {
             window.location.href = '/volunteerDash';
           } else {
             window.location.href = '/userDash';

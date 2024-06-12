@@ -22,8 +22,22 @@ export class DaycareListComponent implements OnInit{
   }
 
   loadDogs(): void {
-    this.guarderiaservice.getMascotasGuarderia().subscribe((data: MascotaGuar[]) => {
-      this.dogs = data;
-    });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.guarderiaservice.getMascotasGuarderia(token).subscribe({
+        next: (data: any[]) => {
+          this.dogs = data;
+        },
+        error: (error) => {
+          console.error('Error al obtener la lista de mascotas:', error);
+        },
+        complete: () => {
+          console.log('Petición para obtener la lista de mascotas completa');
+          console.log(this.dogs);
+        }
+      });
+    } else {
+      console.error('No se encontró el token de autenticación.');
+    }
   }
 }

@@ -4,9 +4,10 @@
     <div class="col-md-3" *ngFor="let mascota of dogs; let i = index">
       <div class="card mb-4">
         <div class="card-body">
-          <p class="card-text">Edad: {{ mascota.edad }}</p>
-          <p class="card-text">Raza: {{ mascota.raza }}</p>
+          <p class="card-text">Edad: {{ mascota.age }}</p>
+          <p class="card-text">Raza: {{ mascota.breed }}</p>
           <p class="card-text">Vacunado: {{ mascota.vacunado }}</p>
+          <button class="btn btn-success">adoptar</button>
         </div>
       </div>
     </div>

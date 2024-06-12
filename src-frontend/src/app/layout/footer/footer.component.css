@@ -1,6 +1,6 @@
 .footer {
     display: flex;
-    position: fixed;
+    position: sticky;
     bottom: 0%;
     width: 100%;
     justify-content: space-between;

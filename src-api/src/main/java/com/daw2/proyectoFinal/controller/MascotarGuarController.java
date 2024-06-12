@@ -29,14 +29,14 @@ public class MascotarGuarController {
 	}
 
 	@PostMapping
-	public MascotaGuar createMascotaGuar(@RequestBody MascotaGuar dogVaccination) {
-		return service.save(dogVaccination);
+	public MascotaGuar createMascotaGuar(@RequestBody MascotaGuar mascotaGuar) {
+		return service.save(mascotaGuar);
 	}
 
 	@PutMapping("/{id}")
-	public MascotaGuar updateMascotaGuar(@PathVariable Long id, @RequestBody MascotaGuar dogVaccination) {
-		dogVaccination.setId(id);
-		return service.save(dogVaccination);
+	public MascotaGuar updateMascotaGuar(@PathVariable Long id, @RequestBody MascotaGuar mascotaGuar) {
+		mascotaGuar.setId(id);
+		return service.save(mascotaGuar);
 	}
 
 	@DeleteMapping("/{id}")

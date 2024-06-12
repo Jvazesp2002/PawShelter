@@ -7,23 +7,23 @@
     <form>
       <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre de su mascota" [(ngModel)]="mascota.nombre"
-          name="nombre">
+        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre de su mascota" [(ngModel)]="mascota.name"
+          name="name">
       </div>
       <div class="form-group">
         <label for="apellidos">Edad:</label>
-        <input type="number" class="form-control" id="edad" placeholder="Ingrese la edad de su mascota"
-          [(ngModel)]="mascota.edad" name="edad">
+        <input type="number" class="form-control" id="age" placeholder="Ingrese la edad de su mascota"
+          [(ngModel)]="mascota.age" name="age">
       </div>
       <div class="form-group">
         <label for="correo">Raza:</label>
-        <input type="text" class="form-control" id="raza" placeholder="Ingrese la raza de su mascota"
-          [(ngModel)]="mascota.raza" name="raza">
+        <input type="text" class="form-control" id="breed" placeholder="Ingrese la raza de su mascota"
+          [(ngModel)]="mascota.breed" name="breed">
       </div>
       <div class="form-group">
         <label for="contrasena">Dias de estancia:</label>
-        <input type="text" class="form-control" id="dias" placeholder="Ingrese los dias que va a dejar su mascota"
-          [(ngModel)]="mascota.dias" name="dias">
+        <input type="text" class="form-control" id="stayDays" placeholder="Ingrese los dias que va a dejar su mascota"
+          [(ngModel)]="mascota.stayDays" name="stayDays ">
       </div>
       <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary me-2" (click)="crearMascota()">Mandar Formulario</button>

@@ -14,10 +14,10 @@ import { HeaderRegistradoComponent } from '../layout/header-registrado/header-re
 })
 export class DaycareFormComponent {
   mascota = {
-    nombre: '',
-    edad: '',
-    raza: '',
-    dias: ''
+    name: '',
+    age:  0,
+    breed: '',
+    stayDays: 0
   };
 
   constructor(
@@ -33,10 +33,10 @@ export class DaycareFormComponent {
     console.log(this.mascota);
     const token = localStorage.getItem('token');
     const newMascota = {
-      nombre: this.mascota.nombre,
-      edad: this.mascota.edad,
-      raza: this.mascota.raza,
-      dias: this.mascota.dias
+      name: this.mascota.name,
+      age: this.mascota.age,
+      breed: this.mascota.breed,
+      stayDays: this.mascota.stayDays
     }
     this.mascotaService.createMascotaGuarderia(newMascota).subscribe({
       next: () => {
