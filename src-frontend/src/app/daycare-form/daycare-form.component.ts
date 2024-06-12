@@ -14,6 +14,7 @@ import { HeaderRegistradoComponent } from '../layout/header-registrado/header-re
 })
 export class DaycareFormComponent {
   mascota = {
+    id: 0,
     name: '',
     age:  0,
     breed: '',
@@ -33,25 +34,30 @@ export class DaycareFormComponent {
     console.log(this.mascota);
     const token = localStorage.getItem('token');
     if (token) {
-      const newTarea = {
+      const newMascota = {
+        id:this.mascota.id,
         name: this.mascota.name,
         age: this.mascota.age,
         breed: this.mascota.breed,
         stayDays: this.mascota.stayDays,
       }
-      this.mascotaService.createMascotaGuarderia(newTarea, token).subscribe({
+      this.mascotaService.createMascotaGuarderia(newMascota, token).subscribe({
         next: () => {
           this.openModalCerrar();
         },
         error: (error: any) => {
           console.error('Error al crear la mascota', error);
+          if (error.status === 403) {
+            console.error('Acceso denegado. Verifica tu token.');
+          }
         },
-        complete: () => {
+        complete: () => { 
           console.log('Petición para crear la mascota completada');
+          this.irAUserDash();
         }
       });
     } else {
-      console.error('Algo ocurrió.');
+      console.error('Token no encontrado en el almacenamiento local.');
     }
   }
 

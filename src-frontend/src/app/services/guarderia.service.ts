@@ -30,7 +30,7 @@ export class GuarderiaService {
     return this.http.post<any[]>(`${this.apiUrl}`, mascotaGuar, { headers });
   }
 
-  updateMascotaGuarderia(id: number, mascotaGuar: MascotaGuar, token:string): Observable<any[]> {
+  updateMascotaGuarderia(id: number, mascotaGuar: MascotaGuar, token: string): Observable<any[]> {
     // Agregar el token de autenticación al encabezado de la solicitud
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -41,7 +41,14 @@ export class GuarderiaService {
     return this.http.put<any[]>(`${this.apiUrl}/${id}`, mascotaGuar, { headers });
   }
 
-  deleteMascotaGuarderia(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteMascotaGuarderia(id: number, token: string): Observable<void> {
+    // Agregar el token de autenticación al encabezado de la solicitud
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    // Configurar las cabeceras CORS para permitir solicitudes desde el origen de tu aplicación Angular
+    headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    // Realizar la solicitud HTTP DELETE para borrar la mascota
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers });
   }
 }

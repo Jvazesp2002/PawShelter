@@ -1,2 +1,16 @@
 <app-header-registrado></app-header-registrado>
-<p>admin-daycare works!</p>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let mascota of dogs; let i = index">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ mascota.name }}</h5>
+            <p class="card-text">Edad: {{ mascota.age }}</p>
+            <p class="card-text">Raza: {{ mascota.breed }}</p>
+            <p class="card-text">Días de estancia: {{ mascota.stayDays }}</p>
+            <button class="btn btn-danger" (click)="eliminar(mascota.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

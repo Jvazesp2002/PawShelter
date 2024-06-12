@@ -93,13 +93,12 @@ export class LoginComponent {
           // Redirigir al usuario a la página correspondiente según su rol
           if (userRole === 'ADMINISTRADOR') {
             window.location.href = '/adminDash';
-          } else {
-            window.location.href = '/userDash';
+          }
+          if(userRole === 'USUARIO'){
+            window.location.href = "/userDash"
           }
           if (userRole === 'VOLUNTARIO') {
             window.location.href = '/volunteerDash';
-          } else {
-            window.location.href = '/userDash';
           }
         } else {
           console.error('El token no contiene información de rol.');
