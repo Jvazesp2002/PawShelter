@@ -1,11 +1,13 @@
 .header {
     display: flex;
     position: sticky;
+    top: 0%;
     justify-content: space-between;
     align-items: center;
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
+    z-index: 10;
   }
   
   .left {
