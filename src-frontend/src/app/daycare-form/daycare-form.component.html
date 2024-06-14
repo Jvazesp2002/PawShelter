@@ -1,5 +1,6 @@
 <app-header-registrado></app-header-registrado>
-<div class="container mt-5">
+<div class="container">
+  <div class="container mt-5">
     <div class="back">
       <button type="button" class="btn btn-primary" (click)="irAUserDash()">Volver</button>
     </div>
@@ -7,8 +8,8 @@
     <form>
       <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre de su mascota" [(ngModel)]="mascota.name"
-          name="name">
+        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre de su mascota"
+          [(ngModel)]="mascota.name" name="name">
       </div>
       <div class="form-group">
         <label for="apellidos">Edad:</label>
@@ -30,7 +31,7 @@
       </div>
     </form>
   </div>
-  
+
   <div id="myModal1" class="modal" [ngClass]="{'show': isModalCerrar}">
     <div class="modal-content">
       <span class="close" (click)="closeModalCerrar(); irAUserDash()">&times;</span>
@@ -45,3 +46,4 @@
       <button class="btnCerrar" (click)="closeModalCerrar(); irAUserDash()">Cerrar</button>
     </div>
   </div>
+</div>

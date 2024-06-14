@@ -1,13 +1,15 @@
 <app-header-registrado></app-header-registrado>
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-3" *ngFor="let mascota of dogs; let i = index">
-      <div class="card mb-4">
-        <div class="card-body">
-          <p class="card-text">Edad: {{ mascota.edad }}</p>
-          <p class="card-text">Raza: {{ mascota.raza }}</p>
-          <p class="card-text">Vacunado: {{ mascota.vacunado }}</p>
-          <button class="btn btn-success" (click)=" adoptar(mascota.id)">adoptar</button>
+<div class="container">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let mascota of dogs; let i = index">
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="card-text">Edad: {{ mascota.edad }}</p>
+            <p class="card-text">Raza: {{ mascota.raza }}</p>
+            <p class="card-text">Vacunado: {{ mascota.vacunado }}</p>
+            <button class="btn btn-success" (click)=" adoptar(mascota.id)">adoptar</button>
+          </div>
         </div>
       </div>
     </div>
