@@ -17,7 +17,7 @@ import com.daw2.proyectoFinal.model.MascotaGuar;
 import com.daw2.proyectoFinal.servicesImpl.MascotaGuarServiceImpl;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://pawshelter-bucket.s3-website-us-east-1.amazonaws.com/", "http://localhost:4200"})
 @RequestMapping("/api/guarderia")
 public class MascotarGuarController {
 	@Autowired

@@ -7,7 +7,8 @@ import { MascotaAdop } from '../model/mascota-adop';
   providedIn: 'root'
 })
 export class AdopcionService {
-  private apiUrl = 'http://localhost:8080/api/refugio';
+  //private apiUrl = 'http://localhost:8080/api/refugio';
+  private apiUrl = 'http://ec2-3-94-168-164.compute-1.amazonaws.com:8080/api/refugio';
 
   constructor(private http: HttpClient) { }
 

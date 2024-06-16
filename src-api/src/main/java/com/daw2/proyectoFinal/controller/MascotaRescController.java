@@ -17,7 +17,7 @@ import com.daw2.proyectoFinal.model.MascotaResc;
 import com.daw2.proyectoFinal.servicesImpl.MascotaRescServiceImpl;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://pawshelter-bucket.s3-website-us-east-1.amazonaws.com/", "http://localhost:4200"})
 @RequestMapping("/api/refugio")
 public class MascotaRescController {
 	@Autowired

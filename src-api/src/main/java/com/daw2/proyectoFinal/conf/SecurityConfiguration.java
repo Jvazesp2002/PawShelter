@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.daw2.proyectoFinal.services.UsuarioService;
 
@@ -40,6 +42,19 @@ public class SecurityConfiguration {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Bean
+    UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://pawshelter-bucket.s3-website-us-east-1.amazonaws.com");
+        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+
     /**
      * Configuración del filtro de seguridad para las solicitudes HTTP.
      *
@@ -48,8 +63,9 @@ public class SecurityConfiguration {
      * @throws Exception Si hay un error durante la configuración.
      */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilita CORS con la configuración definida
                 .authorizeHttpRequests(request -> 
                     request
                         // Endpoints públicos
@@ -69,7 +85,7 @@ public class SecurityConfiguration {
      * @return Un objeto PasswordEncoder.
      */
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -79,7 +95,7 @@ public class SecurityConfiguration {
      * @return Un objeto AuthenticationProvider.
      */
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(usuarioService.userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -94,7 +110,7 @@ public class SecurityConfiguration {
      * @throws Exception Si hay un error al obtener el AuthenticationManager.
      */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
     

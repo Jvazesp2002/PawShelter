@@ -6,7 +6,7 @@ import { MascotaGuar } from '../model/mascota-guar';
   providedIn: 'root'
 })
 export class GuarderiaService {
-  private apiUrl = 'http://localhost:8080/api/guarderia';
+  private apiUrl = 'http://ec2-3-94-168-164.compute-1.amazonaws.com:8080/api/guarderia';
 
   constructor(private http: HttpClient) { }
 

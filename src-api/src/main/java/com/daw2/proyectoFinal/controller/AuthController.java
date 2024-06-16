@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
  * Controlador REST que gestiona las operaciones de autenticación y registro de usuarios.
  * Proporciona endpoints para registrar nuevos usuarios y para iniciar sesión.
  */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://pawshelter-bucket.s3-website-us-east-1.amazonaws.com/", "http://localhost:4200"})
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
